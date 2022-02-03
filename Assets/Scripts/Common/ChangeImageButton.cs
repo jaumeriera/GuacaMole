@@ -19,7 +19,6 @@ public class ChangeImageButton : MonoBehaviour
 
     public void OnMouseOver()
     {
-        Debug.Log("enter");
         image.sprite = selectSprite;
     }
 
