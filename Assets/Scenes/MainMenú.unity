@@ -507,7 +507,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6366706088064670721, guid: 4d676db9d3cbaaf42b53ec5ffe4d7e01, type: 3}
       propertyPath: m_Name
-      value: GenericButton
+      value: CreditsButton
       objectReference: {fileID: 0}
     - target: {fileID: 6366706088064670722, guid: 4d676db9d3cbaaf42b53ec5ffe4d7e01, type: 3}
       propertyPath: m_Pivot.x
