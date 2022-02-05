@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Animator))]
 public class SelectableTile : MonoBehaviour
 {
     private SpriteRenderer renderer;
+    private Animator animator;
     [SerializeField] private Sprite shadow;
     [SerializeField] private Sprite hammer;
 
@@ -16,6 +18,7 @@ public class SelectableTile : MonoBehaviour
     private void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
         renderer.sprite = shadow;
         renderer.enabled = false;
@@ -59,6 +62,7 @@ public class SelectableTile : MonoBehaviour
         {
             return;
         }
+        animator.SetBool("isEmpty", true);
         renderer.sprite = hammer;
         Color tmpColor = renderer.color;
         tmpColor.a = alfaHammer;
@@ -71,6 +75,7 @@ public class SelectableTile : MonoBehaviour
     private IEnumerator WaitSeconds(int seconds)
     {
         yield return new WaitForSeconds(seconds);
+        animator.SetBool("isEmpty", false);
         gm.SetIsWacked(false);
         Color tmpColor = renderer.color;
         tmpColor.a = alfaShadow;
