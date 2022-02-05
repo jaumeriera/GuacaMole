@@ -15,6 +15,8 @@ public class SelectableTile : MonoBehaviour
     
     private float alfaShadow = 145f / 255f;
     private float alfaHammer = 255f / 255f;
+
+    public GameObject spawnedObject;
     private void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -62,7 +64,8 @@ public class SelectableTile : MonoBehaviour
         {
             return;
         }
-        animator.SetBool("isEmpty", true);
+
+        SetAnimation(true);
         renderer.sprite = hammer;
         Color tmpColor = renderer.color;
         tmpColor.a = alfaHammer;
@@ -75,7 +78,7 @@ public class SelectableTile : MonoBehaviour
     private IEnumerator WaitSeconds(int seconds)
     {
         yield return new WaitForSeconds(seconds);
-        animator.SetBool("isEmpty", false);
+        ResetAnimations();
         gm.SetIsWacked(false);
         Color tmpColor = renderer.color;
         tmpColor.a = alfaShadow;
@@ -83,4 +86,28 @@ public class SelectableTile : MonoBehaviour
         renderer.sprite = shadow;
         renderer.enabled = false;
     }
+
+    private void SetAnimation(bool value)
+    {
+        if (spawnedObject != null)
+        {
+            if (spawnedObject.tag == "Avocado")
+            {
+                animator.SetBool("isAvocado", true);
+            } else if (spawnedObject.tag == "Mole")
+            {
+                animator.SetBool("isMole", true);
+            }
+        } else
+            animator.SetBool("isEmpty", true);
+    }
+    private void ResetAnimations()
+    {
+        animator.SetBool("isAvocado", false);
+        animator.SetBool("isMole", false);
+        animator.SetBool("isEmpty", false);
+    }
+
 }
+    
+    
