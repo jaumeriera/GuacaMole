@@ -7,7 +7,7 @@ using UnityEngine;
 public class SelectableTile : MonoBehaviour
 {
     private SpriteRenderer renderer;
-    private Animator animator;
+    protected Animator animator;
     [SerializeField] private Sprite shadow;
     [SerializeField] private Sprite hammer;
 
@@ -16,8 +16,7 @@ public class SelectableTile : MonoBehaviour
     private float alfaShadow = 145f / 255f;
     private float alfaHammer = 255f / 255f;
 
-    public GameObject spawnedObject;
-    private void Awake()
+    virtual protected void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
@@ -65,17 +64,15 @@ public class SelectableTile : MonoBehaviour
             return;
         }
 
-        SetAnimation(true);
         renderer.sprite = hammer;
         Color tmpColor = renderer.color;
         tmpColor.a = alfaHammer;
         renderer.color = tmpColor;
         gm.SetIsWacked(true);
-        StartCoroutine(WaitSeconds(2));
         
     }
 
-    private IEnumerator WaitSeconds(int seconds)
+    protected IEnumerator WaitSeconds(int seconds)
     {
         yield return new WaitForSeconds(seconds);
         ResetAnimations();
@@ -86,25 +83,8 @@ public class SelectableTile : MonoBehaviour
         renderer.sprite = shadow;
         renderer.enabled = false;
     }
-
-    private void SetAnimation(bool value)
+    virtual protected void ResetAnimations()
     {
-        if (spawnedObject != null)
-        {
-            if (spawnedObject.tag == "Avocado")
-            {
-                animator.SetBool("isAvocado", true);
-            } else if (spawnedObject.tag == "Mole")
-            {
-                animator.SetBool("isMole", true);
-            }
-        } else
-            animator.SetBool("isEmpty", true);
-    }
-    private void ResetAnimations()
-    {
-        animator.SetBool("isAvocado", false);
-        animator.SetBool("isMole", false);
         animator.SetBool("isEmpty", false);
     }
 

@@ -6,8 +6,14 @@ public class EmptyTile : SelectableTile
 {
     override protected void OnMouseDown()
     {
+
+        SetAnimation(true);
         base.OnMouseDown();
-        Debug.Log("whack");
+        StartCoroutine(WaitSeconds(4));
     }
 
+    private void SetAnimation(bool value)
+    {
+        animator.SetBool("isEmpty", true);
+    }
 }
