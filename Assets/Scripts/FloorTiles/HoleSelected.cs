@@ -29,14 +29,14 @@ public class HoleSelected : SelectableTile
             {
                 animator.SetBool("isAvocado", true);
                 gm.AddAvocado(spawnPoint.spawnable.GetComponent<BaseSpawnable>().points);
-                waitTime = 0.5f;
+                waitTime = 0.8f;
                 Destroy(spawnPoint.spawnable.gameObject);
             }
             else if (spawnPoint.spawnable.tag == "Mole")
             {
                 animator.SetBool("isMole", true);
                 gm.AddPoints(spawnPoint.spawnable.GetComponent<BaseSpawnable>().points);
-                waitTime = 0.5f;
+                waitTime = 0.8f;
                 spawnPoint.spawnable.gameObject.SetActive(false);
             }
         }

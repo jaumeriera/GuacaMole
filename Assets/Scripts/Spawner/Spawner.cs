@@ -8,7 +8,11 @@ public class Spawner : MonoBehaviour
 
     ObjectPool pool;
     float timeFromLastSpawn;
+    float currentSpawnTime;
     float StartingWaitTime = 2;
+    float initialTimeBetweenSpawns = 3;
+    float decrementTime = 0.1f;
+    float minTime = 1;
 
     private void Awake()
     {
@@ -18,6 +22,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         timeFromLastSpawn = StartingWaitTime;
+        currentSpawnTime = initialTimeBetweenSpawns;
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -27,17 +32,20 @@ public class Spawner : MonoBehaviour
         {
             yield return null;
             timeFromLastSpawn += Time.deltaTime;
-            if (timeFromLastSpawn > NextSpawnTime())
+            if (timeFromLastSpawn > currentSpawnTime)
             {
                 SpawnEnemy();
+                NextSpawnTime();
                 timeFromLastSpawn = 0f;
             }
         }
     }
-    private float NextSpawnTime()
+    private void NextSpawnTime()
     {
-        // TODO think about the formula in order to get minor ratio depending on the spawned moles
-        return 1;
+        if (currentSpawnTime > minTime)
+        {
+            currentSpawnTime -= decrementTime;
+        }
     }
 
     private void SpawnEnemy()
@@ -45,7 +53,7 @@ public class Spawner : MonoBehaviour
         GameObject spawnPoint = ChooseRandomSpawnPoint();
         PoolableObject spawnable = (PoolableObject)pool.getNext();
         // TODO remove
-        if (spawnable != null)
+        if (spawnable != null && spawnPoint != null)
         {
             spawnable.transform.position = spawnPoint.transform.position;
             spawnPoint.gameObject.GetComponent<SpawnPoint>().spawnable = spawnable;
@@ -64,6 +72,11 @@ public class Spawner : MonoBehaviour
             element = spawnPoints[idx];
             counter++;
         } while (!element.gameObject.GetComponent<SpawnPoint>().isEmpty && counter < 100);
+
+        if (counter == 100)
+        {
+            return null;
+        }
 
         return element;
     }
