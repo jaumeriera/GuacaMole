@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8215010460403020213}
   - component: {fileID: 5437780260292606940}
-  - component: {fileID: 3678881881332988517}
   - component: {fileID: 456892966211408874}
   - component: {fileID: 5160069733004742153}
+  - component: {fileID: 8361946957732882258}
   m_Layer: 0
   m_Name: HoleFloorTile
   m_TagString: Untagged
@@ -89,21 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3678881881332988517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2042615417502412364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 427536493e877bd44bbbfe37b38bcc9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shadow: {fileID: 8769441608861115861, guid: c8ae72be644a61849882cb7805439612, type: 3}
-  hammer: {fileID: -7890318478371218666, guid: c8ae72be644a61849882cb7805439612, type: 3}
-  spawnedObject: {fileID: 0}
 --- !u!61 &456892966211408874
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,6 +134,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8361946957732882258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042615417502412364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9412c7fc104cfa4486738489f9420e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadow: {fileID: 8769441608861115861, guid: c8ae72be644a61849882cb7805439612, type: 3}
+  hammer: {fileID: -7890318478371218666, guid: c8ae72be644a61849882cb7805439612, type: 3}
+  spawnPoint: {fileID: 8621190536259263184}
 --- !u!1 &3741557388256247184
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8143802257711598481}
-  - component: {fileID: 3743727052779927513}
+  - component: {fileID: 8621190536259263184}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -426,7 +426,7 @@ Transform:
   m_Father: {fileID: 8215010460403020213}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3743727052779927513
+--- !u!114 &8621190536259263184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

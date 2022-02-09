@@ -5,27 +5,39 @@ using UnityEngine;
 public class HoleSelected : SelectableTile
 {
     [SerializeField] private SpawnPoint spawnPoint;
+    private float waitTime;
     override protected void OnMouseDown()
     {
-        SetAnimation(true);
-        base.OnMouseDown();
-        StartCoroutine(WaitSeconds(2));
+        // Todo destroy de element wacked
+        if (!gm.isWacked)
+        {
+            CheckObjectWhacked();
+            base.OnMouseDown();
+            StartCoroutine(WaitSeconds(waitTime));
+        }
     }
 
-    private void SetAnimation(bool value)
+    private void CheckObjectWhacked()
     {
-        if (spawnPoint.isEmpty == false)
+        if (spawnPoint.isEmpty == true)
         {
             animator.SetBool("isEmpty", true);
+            waitTime = 2;
         } else
         {
             if (spawnPoint.spawnable.tag == "Avocado")
             {
                 animator.SetBool("isAvocado", true);
+                gm.AddAvocado(spawnPoint.spawnable.GetComponent<BaseSpawnable>().points);
+                waitTime = 0.5f;
+                Destroy(spawnPoint.spawnable.gameObject);
             }
             else if (spawnPoint.spawnable.tag == "Mole")
             {
                 animator.SetBool("isMole", true);
+                gm.AddPoints(spawnPoint.spawnable.GetComponent<BaseSpawnable>().points);
+                waitTime = 0.5f;
+                spawnPoint.spawnable.gameObject.SetActive(false);
             }
         }
             

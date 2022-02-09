@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3375853440350156035}
   m_Layer: 0
   m_Name: MoleKing
-  m_TagString: Untagged
+  m_TagString: Mole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,3 +98,4 @@ MonoBehaviour:
   velocity: 1
   waitSeconds: 3
   disableHeight: 0.5
+  points: 300

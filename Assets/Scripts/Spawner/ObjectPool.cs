@@ -23,7 +23,6 @@ public class ObjectPool : MonoBehaviour
         CreateAllElements(nMoles, moles);
         CreateAllElements(nKings, kingMole);
         Shuffle();
-        print(pool);
     }
 
     private void Shuffle()

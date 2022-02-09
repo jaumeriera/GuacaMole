@@ -6,10 +6,18 @@ public class BaseSpawnable : PoolableObject
 {
     [SerializeField] protected float velocity;
     [SerializeField] protected int waitSeconds;
-    [SerializeField] private float disableHeight = 0.88f;
-    private float movementY = 1.98f;
-    private Coroutine waitAndGoCoroutine;
-    // Update is called once per frameç
+    [SerializeField] protected float disableHeight = 0.88f;
+    [SerializeField] public int points = 100;
+    protected float movementY = 1.98f;
+    protected Coroutine waitAndGoCoroutine;
+
+    protected GameManager gm;
+
+    private void Awake()
+    {
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+    }
+
     private void OnEnable()
     {
         waitAndGoCoroutine = StartMyCoroutine();
@@ -30,7 +38,7 @@ public class BaseSpawnable : PoolableObject
         return StartCoroutine(WaitAndGo(waitSeconds));
     }
 
-    private IEnumerator WaitAndGo(int seconds)
+    protected virtual IEnumerator WaitAndGo(int seconds)
     {
         Vector3 finalPlace;
         Vector3 initialPlace;

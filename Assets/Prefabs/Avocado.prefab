@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5906913836117422982}
   - component: {fileID: 5765335709205104287}
-  - component: {fileID: 4233993922397017375}
+  - component: {fileID: 8237444186682173395}
   m_Layer: 0
   m_Name: Avocado
-  m_TagString: Untagged
+  m_TagString: Avocado
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4233993922397017375
+--- !u!114 &8237444186682173395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,9 +92,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3062525277259931034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 566756ef8cd3aeb40bb6bd4ae55940a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 776d106bc473af440be54a469989c866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 4
   waitSeconds: 1
   disableHeight: 0.6
+  points: 500

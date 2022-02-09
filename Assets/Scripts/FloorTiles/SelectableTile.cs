@@ -11,7 +11,7 @@ public class SelectableTile : MonoBehaviour
     [SerializeField] private Sprite shadow;
     [SerializeField] private Sprite hammer;
 
-    private GameManager gm;
+    protected GameManager gm;
     
     private float alfaShadow = 145f / 255f;
     private float alfaHammer = 255f / 255f;
@@ -72,7 +72,7 @@ public class SelectableTile : MonoBehaviour
         
     }
 
-    protected IEnumerator WaitSeconds(int seconds)
+    protected IEnumerator WaitSeconds(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         ResetAnimations();
