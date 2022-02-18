@@ -12,7 +12,8 @@ public class Spawner : MonoBehaviour
     float StartingWaitTime = 2;
     float initialTimeBetweenSpawns = 3;
     float decrementTime = 0.1f;
-    float minTime = 1;
+    float minTime = 0.8f;
+    Coroutine spawnerCoroutineReference;
 
     private void Awake()
     {
@@ -23,7 +24,12 @@ public class Spawner : MonoBehaviour
     {
         timeFromLastSpawn = StartingWaitTime;
         currentSpawnTime = initialTimeBetweenSpawns;
-        StartCoroutine(SpawnCoroutine());
+        spawnerCoroutineReference = StartCoroutine(SpawnCoroutine());
+    }
+
+    public void StopSpawner()
+    {
+        StopCoroutine(spawnerCoroutineReference);
     }
 
     IEnumerator SpawnCoroutine()

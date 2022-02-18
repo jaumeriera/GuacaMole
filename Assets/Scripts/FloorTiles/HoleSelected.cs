@@ -5,7 +5,13 @@ using UnityEngine;
 public class HoleSelected : SelectableTile
 {
     [SerializeField] private SpawnPoint spawnPoint;
+    private MusicManager musicManager;
     private float waitTime;
+
+    private void Start()
+    {
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
+    }
     override protected void OnMouseDown()
     {
         // Todo destroy de element wacked
@@ -22,6 +28,7 @@ public class HoleSelected : SelectableTile
         if (spawnPoint.isEmpty == true)
         {
             animator.SetBool("isEmpty", true);
+            musicManager.GroundSound();
             waitTime = 2;
         } else
         {
@@ -32,15 +39,21 @@ public class HoleSelected : SelectableTile
                 waitTime = 0.8f;
                 Destroy(spawnPoint.spawnable.gameObject);
             }
-            else if (spawnPoint.spawnable.tag == "Mole")
+            else if (IsAMole())
             {
                 animator.SetBool("isMole", true);
                 gm.AddPoints(spawnPoint.spawnable.GetComponent<BaseSpawnable>().points);
                 waitTime = 0.8f;
                 spawnPoint.spawnable.gameObject.SetActive(false);
             }
+            spawnPoint.spawnable.GetComponent<BaseSpawnable>().Whacked();
         }
             
+    }
+
+    protected bool IsAMole()
+    {
+        return spawnPoint.spawnable.tag == "MiniMole" || spawnPoint.spawnable.tag == "KingMole" || spawnPoint.spawnable.tag == "Mole";
     }
 
     protected override void ResetAnimations()

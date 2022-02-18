@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] WhackThemAllManager WTA;
+    [SerializeField] GameOverManager gameOverManager;
     private BoxCollider2D pointerCollider;
     public bool isWacked { get; private set; }
     public int totalAvocados = 5;
 
-    private  int nAvocados = 0;
+    private int nAvocados = 0;
     public int lostAvocados = 0;
     private int nPoints = 0;
 
@@ -72,7 +73,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("GameOver");
+        isWacked = true;
+        gameOverManager.SetGameOver(nAvocados, nPoints);
     }
 
 }

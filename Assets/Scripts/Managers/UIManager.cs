@@ -17,7 +17,13 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
+    }
+
+    public void Controls()
+    {
+        SceneManager.LoadScene(2);
     }
 
 

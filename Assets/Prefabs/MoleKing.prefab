@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3375853440350156035}
   m_Layer: 0
   m_Name: MoleKing
-  m_TagString: Mole
+  m_TagString: KingMole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566756ef8cd3aeb40bb6bd4ae55940a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 1
+  velocity: 3
   waitSeconds: 3
   disableHeight: 0.5
   points: 300

@@ -8,6 +8,7 @@ public class BaseSpawnable : PoolableObject
     [SerializeField] protected int waitSeconds;
     [SerializeField] protected float disableHeight = 0.88f;
     [SerializeField] public int points = 100;
+    protected MusicManager musicManager;
     protected float movementY = 1.98f;
     protected Coroutine waitAndGoCoroutine;
 
@@ -16,6 +17,7 @@ public class BaseSpawnable : PoolableObject
     private void Awake()
     {
         gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
     }
 
     private void OnEnable()
@@ -27,6 +29,23 @@ public class BaseSpawnable : PoolableObject
     {
         if (waitAndGoCoroutine != null)
         {
+            switch (gameObject.tag)
+            {
+                case "Mole":
+                    musicManager.MoleSound();
+                    break;
+                case "MiniMole":
+                    musicManager.MiniMoleSound();
+                    break;
+                case "KingMole":
+                    musicManager.MoleKingSound();
+                    break;
+                case "Avocado":
+                    musicManager.AvocadoSound();
+                    break;
+                default:
+                    break;
+            }
             StopCoroutine(waitAndGoCoroutine);
             waitAndGoCoroutine = null;
             gameObject.SetActive(false);
